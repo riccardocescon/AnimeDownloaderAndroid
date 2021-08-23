@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AAnimeSaturnWebPage">
+
+    <WebView
+        android:id="@+id/adownload_web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/adownload_bottom_bar"
+        />
+
+    <LinearLayout
+        android:id="@+id/adownload_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/adownload_web_cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="Cancel"
+            android:textSize="20dp"
+            />
+
+        <Button
+            android:id="@+id/adownload_web_select_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="Select"
+            android:textSize="20dp"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

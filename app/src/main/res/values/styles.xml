@@ -1,0 +1,38 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AnimeDatkTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/Dark_primary</item>
+        <item name="colorPrimaryDark">@color/Dark_secondary</item>
+        <item name="android:background">@color/Dark_background</item>
+        <item name="android:textColor">@color/Dark_text</item>
+        <item name="android:textColorHint">@color/Dark_text</item>
+    </style>
+
+    <style name="AnimeWaterTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/Water_primary</item>
+        <item name="colorPrimaryDark">@color/Water_secondary</item>
+        <item name="android:background">@color/Water_background</item>
+        <item name="android:textColor">@color/Water_text</item>
+        <item name="android:textColorHint">@color/Water_text</item>
+    </style>
+
+    <style name="AnimeDayTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/Day_primary</item>
+        <item name="colorPrimaryDark">@color/Day_secondary</item>
+        <item name="android:background">@color/Day_background</item>
+        <item name="android:textColor">@color/Day_text</item>
+        <item name="android:textColorHint">@color/Day_text</item>
+    </style>
+
+    <style name="AnimeFireTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/Fire_primary</item>
+        <item name="colorPrimaryDark">@color/Fire_secondary</item>
+        <item name="android:background">@color/Fire_background</item>
+        <item name="android:textColor">@color/Fire_text</item>
+        <item name="android:textColorHint">@color/Fire_text</item>
+    </style>
+
+</resources>

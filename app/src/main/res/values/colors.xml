@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000</color>
+
+    <!-- DARK -->
+    <color name="Dark_primary">#C499FF</color>
+    <color name="Dark_secondary">#1B1B1B</color>
+    <color name="Dark_background">#1B1B1B</color>
+    <color name="Dark_cancel">#F9847B</color>
+    <color name="Dark_text">#C499FF</color>
+    <color name="Dark_secondary_text">#42B7FF</color>
+    <color name="Dark_button_text">#002594</color>
+    <color name="Dark_dark_gray">#5E5E5E</color>
+    <color name="Dark_nickname">#F9847B</color>
+    <color name="Dark_version">#ADADAD</color>
+
+
+    <!-- DAY -->
+    <color name="Day_primary">#854000</color>
+    <color name="Day_secondary">#FFFFFF</color>
+    <color name="Day_background">#FFFFFF</color>
+    <color name="Day_cancel">#F16F9A</color>
+    <color name="Day_text">#355F35</color>
+    <color name="Day_seconary_text">#A22101</color>
+    <color name="Day_button_text">#FFFBF5</color>
+    <color name="Day_light_gray">#CFCFCF</color>
+    <color name="Day_nickname">#355F35</color>
+    <color name="Day_version">#474747</color>
+
+    <!-- WATER -->
+    <color name="Water_primary">#b3e5fc</color>
+    <color name="Water_secondary">#1a237e</color>
+    <color name="Water_background">#1a237e</color>
+    <color name="Water_cancel">#F9847B</color>
+    <color name="Water_text">#F2C602</color>
+    <color name="Water_dark_yellow">#fbc02d</color>
+    <color name="Water_seconary_text">#FDE681</color>
+    <color name="Water_button_text">#002594</color>
+    <color name="Water_dark_light_blue">#00A2B8</color>
+    <color name="Water_nickname">#0AFFFB</color>
+    <color name="Water_version">#94C8FF</color>
+
+    <!-- Fire -->
+    <color name="Fire_primary">#FCF6F3</color>
+    <color name="Fire_secondary">#c62828</color>
+    <color name="Fire_background">#c62828</color>
+    <color name="Fire_cancel">#F9847B</color>
+    <color name="Fire_text">#FEFBFA</color>
+    <color name="Fire_light_orange">#fb8c00</color>
+    <color name="Fire_seconary_text">#FEF9AE</color>
+    <color name="Fire_button_text">#002594</color>
+    <color name="Fire_dark_red">#4D0000</color>
+    <color name="Fire_nickname">#FFFFFF</color>
+    <color name="Fire_version">#FFE5C2</color>
+
+
+
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="interactableDarkOrange">#FF5722</color>
+    <color name="interactableDarkBlue">#00BCD4</color>
+    <color name="white">#FFFFFF</color>
+    <color name="sun">#FFC107</color>
+</resources>

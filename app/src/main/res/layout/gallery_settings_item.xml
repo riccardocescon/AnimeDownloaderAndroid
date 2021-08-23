@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Dialogs.GallerySettingsDialog"
+    android:orientation="vertical"
+    android:padding="30dp"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gallery Settings"
+        android:textAlignment="center"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order Type :"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_marginTop="20sp"
+        />
+
+    <Button
+        android:id="@+id/gallery_settings_order_type_button"
+        android:layout_width="match_parent"
+        android:layout_height="35sp"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/Fire_dark_red"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order By :"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_marginTop="20sp"
+        />
+
+    <Button
+        android:id="@+id/gallery_settings_order_by_button"
+        android:layout_width="match_parent"
+        android:layout_height="35sp"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/Fire_dark_red"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/gallery_settings_delete_statistics"
+        android:layout_width="match_parent"
+        android:layout_height="35sp"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/Fire_dark_red"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:text="Delete all statistics"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        >
+
+        <Button
+            android:id="@+id/gallery_settings_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/half_left_rounded"
+            android:backgroundTint="@color/Fire_dark_red"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:text="Cancel"
+            />
+
+        <Button
+            android:id="@+id/gallery_settings_save"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/half_right_rounded"
+            android:backgroundTint="@color/Fire_dark_red"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:text="Confirm"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

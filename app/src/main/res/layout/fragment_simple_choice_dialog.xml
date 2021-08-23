@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Dialogs.SimpleChoiceDialog"
+    android:padding="30dp"
+    >
+
+    <TextView
+        android:id="@+id/simple_choice_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        />
+
+    <TextView
+        android:id="@+id/simple_choice_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Message"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:layout_below="@id/simple_choice_title"
+        />
+
+    <Button
+        android:id="@+id/simple_choice_yes"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Yes"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/simple_choice_message"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/Fire_dark_red"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20sp"
+        />
+
+    <Button
+        android:id="@+id/simple_choice_no"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="No"
+        android:layout_below="@id/simple_choice_message"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/Fire_dark_red"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/simple_choice_yes"
+        android:layout_marginTop="20sp"
+        />
+
+</RelativeLayout>

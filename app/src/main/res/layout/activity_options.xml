@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OptionsActivity">
+
+    <TextView
+        android:id="@+id/options_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/options_title"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/options_destiantion_folder_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:text="Destination Folder"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
+
+            <Button
+                android:id="@+id/options_destiantion_folder_input"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.3"
+                android:text="Default..."
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:background="@drawable/roundedbutton"
+                android:textStyle="bold"
+                android:padding="10dp"
+                android:autoSizeTextType="uniform"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/options_theme_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:text="Theme"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
+
+            <Button
+                android:id="@+id/options_theme_input"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.2"
+                android:spinnerMode="dialog"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:background="@drawable/roundedbutton"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/options_date_format"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:text="Date Format"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
+
+            <Button
+                android:id="@+id/options_date_format_input"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.2"
+                android:spinnerMode="dialog"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:background="@drawable/roundedbutton"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

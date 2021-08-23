@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GalleryActivity">
+
+    <TextView
+        android:id="@+id/gallery_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Anime Gallery"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        />
+
+    <ListView
+        android:id="@+id/gallery_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gallery_title"
+        android:layout_margin="30dp"
+        android:background="@drawable/roundedbutton"
+        />
+
+    <TextView
+        android:id="@+id/gallery_no_anime_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You haven't downloaded anime yet"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        />
+
+    <RelativeLayout
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        >
+
+        <Button
+            android:id="@+id/gallery_settings_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/roundedbutton"
+            android:backgroundTint="@color/Fire_background"
+            />
+
+
+        <View
+            android:id="@+id/gallery_settings_line_1"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/roundedbutton"
+            android:backgroundTint="@color/white"
+            android:elevation="100dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="18dp"
+            />
+
+        <View
+            android:id="@+id/gallery_settings_line_2"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/roundedbutton"
+            android:backgroundTint="@color/white"
+            android:elevation="100dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_below="@id/gallery_settings_line_1"
+            />
+
+        <View
+            android:id="@+id/gallery_settings_line_3"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/roundedbutton"
+            android:backgroundTint="@color/white"
+            android:elevation="100dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_below="@id/gallery_settings_line_2"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_download_page"
+    tools:context=".DownloadActivity">
+
+    <LinearLayout
+        android:id="@+id/download_folder_name_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/download_folder_name"
+            android:layout_width="match_parent"
+            android:hint="Folder Name"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textColorHint="@color/colorPrimary"
+            >
+            <EditText
+                android:id="@+id/download_folder_name_input"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:editable="false"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/download_anime_layout"
+        android:layout_below="@id/download_folder_name_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anime : "
+            android:textSize="20sp"
+            android:layout_marginStart="30dp"
+            android:textColor="@color/colorPrimary"
+            />
+        <TextView
+            android:id="@+id/download_anime_anime_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nothing..."
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:textColor="#037BF4"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/download_anime_info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/download_anime_layout"
+        android:layout_marginTop="20dp"
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/download_anime_info_from_ep_text"
+            android:layout_width="0dp"
+            android:hint="From Ep"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textColorHint="@color/colorPrimary"
+            >
+            <EditText
+                android:id="@+id/download_anime_info_from_ep_input"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="numberDecimal"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/download_anime_info_to_ep_text"
+            android:layout_width="0dp"
+            android:hint="To Ep"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textColorHint="@color/colorPrimary"
+            >
+            <EditText
+                android:id="@+id/download_anime_info_to_ep_input"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="numberDecimal"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/download_anime_download_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/download_anime_info_layout"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@color/colorPrimary"
+        android:text="Download"
+        android:textColor="#fff"
+        android:textSize="20dp"
+        />
+
+
+</RelativeLayout>
