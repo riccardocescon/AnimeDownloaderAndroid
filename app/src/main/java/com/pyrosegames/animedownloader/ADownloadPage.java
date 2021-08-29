@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -34,6 +35,7 @@ import com.pyrosegames.animedownloader.Utils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import static ir.androidexception.filepicker.utility.Util.requestPermission;
 
@@ -43,6 +45,7 @@ public class ADownloadPage extends Fragment {
         void onAnimeNameClick();
     }
 
+    private Activity mActivity;
     private OnSelectAnime callback;
     private String animeName;
     private int startEp, endEp;
@@ -50,6 +53,7 @@ public class ADownloadPage extends Fragment {
     private List<String> urls;
     private List<String> effectiveUrls;
     private Button downloadButton;
+    private Receiver receiver;
 
     private EditText fromEp, toEp;
 
@@ -72,7 +76,7 @@ public class ADownloadPage extends Fragment {
         destinationFolder.setText(Options.getInstance(getActivity()).getDestinationPath());
         destinationFolder.setTextColor(Options.getInstance(getActivity()).getButtonTextColor(getActivity()));
         destinationFolder.setBackgroundTintList(Options.getInstance(getActivity()).getPrimaryColorStateList(getActivity()));
-        view.findViewById(R.id.adownload_folder_name_layout).setOnClickListener(currentView ->{
+        view.findViewById(R.id.adownload_folder_name_input).setOnClickListener(currentView ->{
             StorageChooser chooser = new StorageChooser.Builder()
                     .withActivity(getActivity())
                     .withFragmentManager(getActivity().getFragmentManager())
@@ -94,6 +98,8 @@ public class ADownloadPage extends Fragment {
             // Show dialog whenever you want by
             chooser.show();
         });
+
+        mActivity = getActivity();
 
         Button animeName = view.findViewById(R.id.adownload_anime_anime_name);
         animeName.setText(this.animeName);
@@ -136,8 +142,9 @@ public class ADownloadPage extends Fragment {
             }
         });
 
+        receiver = new Receiver(mActivity, this);
         IntentFilter filter = new IntentFilter("downloadInfo");
-        getActivity().registerReceiver(new Receiver(getActivity()), filter);
+        mActivity.registerReceiver(receiver, filter);
 
         return view;
     }
@@ -171,11 +178,18 @@ public class ADownloadPage extends Fragment {
                 requestPermission(getActivity());
             }
         } else {
-            getActivity().runOnUiThread(this::startDownloadService);
+            int finalRealFromEp = realFromEp;
+            int finalToFromEp = toFromEp;
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    startDownloadService(finalRealFromEp, finalToFromEp);
+                }
+            });
         }
     }
 
-    private void startDownloadService(){
+    private void startDownloadService(int firstEp, int lastEp){
         getActivity().runOnUiThread(() -> {
             dialog = new ProgressDialog(getActivity());
             dialog.setMessage("I'm downloading ep : 0 of " + animeName);
@@ -188,14 +202,25 @@ public class ADownloadPage extends Fragment {
         ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE);
 
         Intent intent = new Intent(getContext(), DownloadAnimeService.class);
-        String[] urlsArray = Arrays.copyOf(effectiveUrls.toArray(), effectiveUrls.toArray().length, String[].class);
+        String[] urlsArray = new String[urls.size()];
+        for(int i = 0; i < urls.size(); i++){
+            String currentUrl = urls.get(i);
+            urlsArray[i] = currentUrl;
+        }
         intent.putExtra("urls", urlsArray);
-        intent.putExtra("startEp", startEp);
-        intent.putExtra("endEp", endEp);
+        intent.putExtra("startEp", firstEp);
+        intent.putExtra("endEp", lastEp);
         intent.putExtra("destinationPath", Options.getInstance(getActivity()).getDestinationPath());
         intent.putExtra("animeNameString", animeName);
         intent.putExtra("tempDir", Options.getInstance(getActivity()).getTempDir());
         getActivity().startService(intent);
+    }
+
+    private void stopDownloading(){
+        Objects.requireNonNull(mActivity).runOnUiThread(() ->{
+            mActivity.unregisterReceiver(receiver);
+            dialog.dismiss();
+        });
     }
 
     @Override
@@ -209,7 +234,12 @@ public class ADownloadPage extends Fragment {
                 // permission was granted, yay! Do the
                 // contacts-related task you need to do.
 
-                startDownloadService();
+                int realFromEp = Integer.parseInt(fromEp.getText().toString());
+                int toFromEp = Integer.parseInt(toEp.getText().toString());
+                if(realFromEp < 1) realFromEp = 1;
+                if(toFromEp > urls.size()) toFromEp = urls.size();
+
+                startDownloadService(realFromEp, toFromEp);
             } else {
 
                 // permission denied, boo! Disable the
@@ -227,10 +257,13 @@ public class ADownloadPage extends Fragment {
 
     private class Receiver extends BroadcastReceiver {
 
-        private Activity mActivity;
+        private Activity mActivityReceiver;
+        private ADownloadPage parent;
+        private boolean lastRequest = false;
 
-        public Receiver(Activity mActivity){
-            this.mActivity = mActivity;
+        public Receiver(Activity mActivity, ADownloadPage parent){
+            mActivityReceiver = mActivity;
+            this.parent = parent;
         }
 
         @Override
@@ -238,16 +271,16 @@ public class ADownloadPage extends Fragment {
             boolean ended = intent.getBooleanExtra("info_ended", false);
             if(ended){
                 final String errorMessage = intent.getStringExtra("info_error");
-                mActivity.runOnUiThread(new Runnable() {
+                mActivityReceiver.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         if(dialog != null)
                             dialog.dismiss();
                         if(!errorMessage.equals("none")){
                             if(errorMessage.contains("[Errno 13] Permission denied")){
-                                Toast.makeText(mActivity.getBaseContext(), "I am not able to download to our SD Card yet, please change the default location to your internal storage", Toast.LENGTH_LONG).show();
+                                Toast.makeText(mActivityReceiver.getBaseContext(), "I am not able to download to our SD Card yet, please change the default location to your internal storage", Toast.LENGTH_LONG).show();
                             }else{
-                                Toast.makeText(mActivity.getBaseContext(), errorMessage, Toast.LENGTH_LONG).show();
+                                Toast.makeText(mActivityReceiver.getBaseContext(), errorMessage, Toast.LENGTH_LONG).show();
                             }
                         }else{
                             saveToGallery();
@@ -259,16 +292,25 @@ public class ADownloadPage extends Fragment {
             final String title = intent.getStringExtra("info_title");
             final String text = intent.getStringExtra("info_text");
             if(text == null) return;
-            mActivity.runOnUiThread(new Runnable() {
+            mActivityReceiver.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     if(dialog == null){
-                        dialog = new ProgressDialog(mActivity);
+                        dialog = new ProgressDialog(mActivityReceiver);
                         dialog.setTitle(title);
                         dialog.setMessage(text);
                         dialog.setCancelable(false);
                         dialog.setInverseBackgroundForced(true);
                         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        dialog.setButton(ProgressDialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                mActivityReceiver.stopService(new Intent(mActivityReceiver.getBaseContext(), DownloadAnimeService.class));
+                                parent.stopDownloading();
+                                lastRequest = true;
+                            }
+                        });
                         dialog.show();
                     }else{
                         dialog.setMessage(text);

@@ -54,6 +54,10 @@ public class DownloadAnimeService extends Service {
     private NotificationCompat.Builder builder;
     private String tempDir;
 
+    private Thread currentThread;
+
+    private NotificationManager manager;
+
     @Override
     public void onCreate() {
         Log.i(TAG, "Service onCreate");
@@ -75,7 +79,7 @@ public class DownloadAnimeService extends Service {
 
         //Creating new thread for my service
         //Always write your long running tasks in a separate thread, to avoid ANR
-        new Thread(new Runnable() {
+        currentThread = new Thread(new Runnable() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void run() {
@@ -88,7 +92,7 @@ public class DownloadAnimeService extends Service {
                     counter++;
                     if(counter < startEp)
                         continue;
-                    Log.i(TAG, "I'm downloading ep : \" + finalCounter1 + \" / \" + endEp + \" of \" + animeNameString + \"\\nDownloaded : 0%");
+                    Log.i(TAG, "I'm downloading ep : " + counter + " / " + endEp + " of " + animeNameString + "\nDownloaded : 0%");
                     final String title = "Downloading " + animeNameString;
 
                     try {
@@ -136,6 +140,10 @@ public class DownloadAnimeService extends Service {
                         });
 
                     } catch (YoutubeDLException | InterruptedException e) {
+                        if(!isRunning && e.getMessage() == null){
+                            stopSelf();
+                            return;
+                        }
                         Log.d("URL_", "failed to initialize youtubedl-android", e);
                         Intent broadCastEndNotification = new Intent();
                         broadCastEndNotification.setAction("downloadInfo");
@@ -153,7 +161,8 @@ public class DownloadAnimeService extends Service {
                 //Stop service once it finishes its task
                 stopSelf();
             }
-        }).start();
+        });
+        currentThread.start();
 
         return Service.START_STICKY;
     }
@@ -266,13 +275,16 @@ public class DownloadAnimeService extends Service {
         isRunning = false;
 
         Log.i(TAG, "Service onDestroy");
+        stopSelf();
+        currentThread.interrupt();
+        manager.cancelAll();
     }
 
     public void showStatusBarIcon(String title, String text, boolean ongoing){
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
         }
 
